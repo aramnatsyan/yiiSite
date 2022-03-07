@@ -34,7 +34,7 @@ class VacancyController extends Controller
     public function actionIndex()
     {
         $vacancies = Vacancy::getAll();
-
+echo '<pre>'; var_dump($vacancies); die;
         return $this->render('index', [
             'vacancies' => $vacancies
         ]);

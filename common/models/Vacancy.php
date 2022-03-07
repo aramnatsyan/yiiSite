@@ -98,7 +98,7 @@ class Vacancy extends \yii\db\ActiveRecord
     public static function getAll()
     {
 
-        return self::find()->select('vacancy.*, department.*')
+        return self::find()->select('vacancy.*, department.name')
 
             ->leftJoin('department', 'vacancy.department_id = department.id')
 
