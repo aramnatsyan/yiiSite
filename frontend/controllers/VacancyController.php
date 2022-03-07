@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Blog;
+use common\models\Vacancy;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
@@ -27,17 +28,15 @@ class VacancyController extends Controller
     }
 
     /**
-     * Displays homepage.
-     *
-     * @return mixed
+     * Get Vacancies
+     * @return string
      */
     public function actionIndex()
     {
-        /* Get Blog list */
-        $blogList = Blog::getAll();
+        $vacancies = Vacancy::getAll();
 
         return $this->render('index', [
-            'blogList' => $blogList
+            'vacancies' => $vacancies
         ]);
     }
 }

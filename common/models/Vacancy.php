@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use common\models\Department;
 
 /**
  * This is the model class for table "vacancy".
@@ -89,5 +90,19 @@ class Vacancy extends \yii\db\ActiveRecord
     public function getRate()
     {
         return $this->hasOne(Rate::className(), ['id' => 'rate_id']);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAll()
+    {
+
+        return self::find()->select('vacancy.*, department.*')
+
+            ->leftJoin('department', 'vacancy.department_id = department.id')
+
+            ->all();
+
     }
 }
