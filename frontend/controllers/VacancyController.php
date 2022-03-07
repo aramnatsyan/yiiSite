@@ -28,13 +28,13 @@ class VacancyController extends Controller
     }
 
     /**
-     * Get Vacancies
      * @return string
+     * @throws \yii\db\Exception
      */
     public function actionIndex()
     {
         $vacancies = Vacancy::getAll();
-echo '<pre>'; var_dump($vacancies); die;
+
         return $this->render('index', [
             'vacancies' => $vacancies
         ]);

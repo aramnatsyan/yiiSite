@@ -4,7 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use common\models\Department;
+use yii\db\Query;
 
 /**
  * This is the model class for table "vacancy".
@@ -93,16 +93,27 @@ class Vacancy extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return array|\yii\db\ActiveRecord[]
+     * @return array
+     * @throws \yii\db\Exception
      */
     public static function getAll()
     {
 
-        return self::find()->select('vacancy.*, department.name')
+        $queryd = new Query;
 
-            ->leftJoin('department', 'vacancy.department_id = department.id')
+        $queryd->select('vacancy.*, department.name, rate.*')
 
-            ->all();
+                ->from('vacancy')
+
+                ->join('LEFT JOIN', 'department', 'department.id =vacancy.department_id')
+
+                ->join('LEFT JOIN', 'rate', 'rate.id =vacancy.rate_id')
+
+                ->all();
+
+        $command = $queryd->createCommand();
+
+        return $command->queryAll();
 
     }
 }

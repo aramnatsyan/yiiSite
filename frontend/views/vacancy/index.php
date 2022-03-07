@@ -13,10 +13,10 @@ $this->title = 'Vacancy';
 
             <?php foreach ($vacancies as $vacancy): ?>
                 <div class="col-sm-4">
-                    <p class="col-red"><?=$vacancy->title?></p>
-                    <p class="col-red"><?=$vacancy->description?></p>
-                    <p class="col-red"><?=$vacancy->name?></p>
-<!--                    <p>--><?//=$vacancy->rate?><!--</p>-->
+                    <h1 class="col-red"><?= $vacancy['title'] ?></h1>
+                    <h3 class="col-red"><?= $vacancy['name'] ?></h3>
+                    <h5 class="col-red"><?= $vacancy['description'] ?></h5>
+                    <p><?= $vacancy['min'] ?> <span>-</span> <?= $vacancy['max']; ?> RUR </p>
                 </div>
             <?php endforeach; ?>
 
